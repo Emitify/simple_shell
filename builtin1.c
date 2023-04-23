@@ -5,7 +5,7 @@
  *              with line numbers, starting at 0.
  * @info: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
- *  Return: Always 0
+ * Return: Always 0
  */
 int _myhistory(info_t *info)
 {
@@ -14,7 +14,7 @@ int _myhistory(info_t *info)
 }
 
 /**
- * unset_alias - sets alias to string
+ * unset_alias - unsets alias to string
  * @info: parameter struct
  * @str: the string alias
  *
@@ -22,17 +22,16 @@ int _myhistory(info_t *info)
  */
 int unset_alias(info_t *info, char *str)
 {
-	char *p, c;
+	char *p;
 	int ret;
 
 	p = _strchr(str, '=');
 	if (!p)
 		return (1);
-	c = *p;
 	*p = 0;
 	ret = delete_node_at_index(&(info->alias),
 		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
-	*p = c;
+	*p = '=';
 	return (ret);
 }
 
@@ -83,8 +82,8 @@ int print_alias(list_t *node)
 /**
  * _myalias - mimics the alias builtin (man alias)
  * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: Always 0
+ *        constant function prototype.
+ * Return: Always 0
  */
 int _myalias(info_t *info)
 {
